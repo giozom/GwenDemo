@@ -10,6 +10,7 @@
 
 # Gwen REPL Commands
 * Step 1: Launch Gwen REPL console <code>./gwen</code>
+
 ## Useful commands
 * Display help <code>help</code>
 * List all previously entered commands <code>history</code>
