@@ -2,11 +2,20 @@
 * Automating Web Application using Gwen.
 * Gwen is a gherkin interpreter for driving automation with Given-When-Then statements (executable specifications)
 
-# Running features with Gwen
-* <code>./gwen -b features/floodio/ -m features/floodio/FloodIO.meta -p gwen.properties -r reports/results</code>
+# Running features in this repo using Gwen
+* ~/GwenDemo $<code>./gwen -b features/floodio/ -m features/floodio/FloodIO.meta -p gwen.properties -r reports/results</code>
 
 # Test Result
 * ~/reports/results/index.html
+
+# Gwen REPL Commands
+* Step 1: Launch Gwen REPL console <code>./gwen</code>
+## Useful commands
+* Display help <code>help</code>
+* List all previously entered commands <code>history</code>
+* Evaluate a step <code>Given|When|Then|And|But [step] </code>
+* Exit console <code>exit|quit|bye</code>
+* List all DSL from console **gwen > **<code>Given I (then press Tab)</code>
 
 # Screenshot
 ![Alt text](https://github.com/giozom/GwenDemo/blob/master/GwenResults.png "Gwen Report")
