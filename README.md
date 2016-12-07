@@ -2,7 +2,7 @@
 * Automating Web Application using Gwen.
 * Gwen is a gherkin interpreter for driving automation with Given-When-Then statements (executable specifications)
 
-# Note
+# Firefox ESR Note
 * Gwen-web will use Firefox as the default browser. It is recommended that you install the latest [Firefox ESR] if you run into issues with your current installation or if you do not have Firefox installed.
 [Firefox ESR]: https://www.mozilla.org/en-US/firefox/organizations/
 
