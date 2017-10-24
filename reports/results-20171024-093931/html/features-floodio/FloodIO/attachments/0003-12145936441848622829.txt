@@ -1,0 +1,17 @@
+{
+  scopes {
+    scope : "feature" {
+      the heading is displayed/javascript : "!!$('h2')"
+      the heading/locator : "tag name"
+      the heading/locator/tag name : "h2"
+      the next button/locator : "class name"
+      the next button/locator/class name : "btn"
+      gwen.feature.file.name : "FloodIO.feature"
+      gwen.feature.file.path : "features/floodio/FloodIO.feature"
+      gwen.feature.file.absolutePath : "/Users/zilwa/versent/projects/GwenDemo/features/floodio/FloodIO.feature"
+      gwen.feature.name : "Complete the floodio challenge"
+      gwen.scenario.name : "Initialise user agent"
+      gwen.scenario.name : "Verify robot completion"
+    }
+  }
+}
