@@ -20,7 +20,7 @@
 * List all previously entered commands <code>history</code>
 * Evaluate a step <code>Given|When|Then|And|But [step] </code>
 * Exit console <code>exit|quit|bye</code>
-* List all DSL from console **gwen > **<code>Given I (then press Tab)</code>
+* List all DSL from console <code>gwen>Given I (then press Tab)</code>
 
 # Screenshot
 ![Alt text](https://github.com/giozom/GwenDemo/blob/master/GwenResults.png "Gwen Report")
