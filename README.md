@@ -1,10 +1,11 @@
 # Gwen Demo
-* Automating Web Application using Gwen.
+* Automating Web Application using Gwen v2.14.0
 * Gwen is a gherkin interpreter for driving automation with Given-When-Then statements (executable specifications)
 
 # Firefox ESR Note
-* Gwen-web will use Firefox as the default browser. It is recommended that you install the latest [Firefox ESR] if you run into issues with your current installation or if you do not have Firefox installed.
+* Gwen-web will use Firefox as the default browser. It is recommended that you install the latest [Firefox ESR] if you run into issues with your current installation or if you do not have Firefox installed. Alternatively you can also run against the latest [Firefox] version
 [Firefox ESR]: https://www.mozilla.org/en-US/firefox/organizations/
+[Firefox]: https://www.mozilla.org/en-US/firefox/new/
 
 # Running features in this repo using Gwen
 * ~/GwenDemo $<code>./gwen -b features/floodio/ -m features/floodio/FloodIO.meta -p gwen.properties -r reports/results</code>
