@@ -1,3 +1,309 @@
+2.14.0
+======
+Oct 6, 2017
+- Update Selenium WebDriver from 3.5.3. to 3.6.0
+- Implement gwen-interpreter/gwen#37: Assertion DSL's should not wait for global time out when
+  value for assertion is already captured
+  - Solution was to immediately return if the value compared has been captured beforehand
+- Add support for running chrome or firefox in headless mode through new Gwen setting:
+  - gwen.web.browser.headless=true|false (default is false)
+
+2.13.0
+======
+Sep 28, 2017
+- Update Gwen from v2.10.1 to v[2.11.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.11.0)
+  - <step> for each <entry> in <source> delimited by "<delimiter>"
+     - Calls <step> for each string entry in <source> text delimited by some value
+  - Refactored attachments handling
+- Add DSLs for deselecting options in multi value dropdowns
+  - I deselect the <position>st option in <element>
+  - I deselect the <position>nd option in <element>
+  - I deselect the <position>rd option in <element>
+  - I deselect the <position>th option in <element>
+  - I deselect "<text>" in <element>
+  - I deselect "<text>" in <element> by value
+  - I deselect <reference> in <element>
+  - I deselect <reference> in <element> by value
+
+2.12.1
+======
+Sep 21, 2017
+- Update Gwen from v2.10.0 to v[2.10.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.10.1)
+  - Improved error handling for @Examples tag
+
+2.12.0
+======
+Sep 19, 2017
+- Implement #39: Add DSL for mousing over elements
+  - I move to <element>
+- Implement #41: Add double click action support
+- Add DSL for eager capture of a value by calling a javascript function on an element
+  - I capture <attribute> <of|on|in> <element> by javascript "<expression>"
+    - where <element> can be referenced as 'element' in javascript <expression> (e.g: element.value)
+- Handle case where javascript returns null (by returning null instead of script expression)
+- Update Gwen from v2.9.2 to v[2.10.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.10.0)
+  - Allow attributes in scoped data bindings to be overridden with blanks.
+  - Add new DSLs
+    - I capture <attribute> by javascript "<expression>"
+      - Eagerly captures the result of a javascript expression
+    - <step> if <condition>
+      - Calls <step> if a javascript predicate <condition> returns true (skips it otherwise)
+    - Issue gwen-interpreter/gwen#34 - SQL insert, update, and delete support
+      - I update the <dbName> database by sql "<updateSmt>"
+        - Runs an insert, update, or delete statement on a database
+        - Number of rows affected accessible as attribute named '<dbName> rows affected'
+  - Make current record of data feed available through 'data record number' attribute
+  - Make current record of for-each iteration available through '<element name> number' attribute
+  - Make current record of repeat-until iteration available through '<element name> iteration' attribute
+  - Fix error reporting for priority steps
+  - Better error reporting for
+    - nested settings properties that fail to resolve at load time
+    - javascript errors
+  - Implement gwen-interpreter/gwen#36: access feature file name and scenario name
+  - Allow override when using the following DSL to set a property value:
+    - my <name> <property|setting> <is|will be> "<value>"
+  - Add interpolation for filepath in @Examples tag
+
+2.11.1
+======
+Sep 2, 2017
+- Update Gwen from v2.9.1 to v[2.9.2](https://github.com/gwen-interpreter/gwen/releases/tag/v2.9.2)
+  - If no elements are found by for-each step, then set status to Passed instead of Skipped
+    and display '-- none found --' in report line.
+
+2.11.0
+======
+Aug 31, 2017
+- Fix dry run validation of repeat while/until steps
+- Update Selenium from 3.5.2 to 3.5.3
+- fix issue #38: ensure that repeat while/until steps fails if terminating condition is not satisfied before timeout
+- Add multi-locator DSL for web elements (will return web element resolved by first locator in table)
+  - <element> can be located by
+      | locator 1  | expression 1  |
+      | locator 2  | expression 2  |
+      | locator .. | expression .. |
+      | locator N  | expression N  |
+  - Where
+    - column 1 = id|name|tag name|css selector|xpath|class name|link text|partial link text|javascript
+    - column 2 = the lookup expression literal
+- Support in container javascript locators (container references in javascript as `containerElem`)
+- Make timeout error messages more consistent and relevant
+- Update Gwen from v2.9.0 to v[2.9.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.9.1)
+
+2.10.0
+======
+Aug 23, 2017
+- Update Scala from 2.12.1 to 2.12.3
+- Update Gherkin from 4.0.0 to 4.1.3
+- Update Scopt from 3.5.0 to 3.6.0
+- Update Selenium from 3.4.0 to 3.5.2
+- Add DSL to clear web element by javascript
+  - <element> can be cleared by javascript "<javascript>"
+- Added support for binding SQL query using DocString syntax
+  - <attribute> <is|will be> defined in the <dbName> database by sql
+    """
+    <selectStmt>
+    """
+
+2.9.1
+=====
+Aug 3, 2017
+- Fixed setting Boolean chrome preferences
+
+2.9.0
+=====
+Jul 17, 2017
+- Update Gwen from v2.7.3 to v[2.8.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.8.0)
+  - Add support for DocStrings
+  - Evaluate all javascript expressions in anonymous function block
+  - Add paste mode to REPL to support multiline step evaluation (steps with tables or docStrings)
+  - Add Gherkin language header to Gwen model
+- Added DSL for executing arbitrary JavaScript
+  - I execute javascript "<javascript>"
+
+2.8.3
+=====
+Jul 11, 2017
+- Update Gwen from v2.7.2 to v[2.7.3](https://github.com/gwen-interpreter/gwen/releases/tag/v2.7.3)
+  - Fix fail handling where cause was not being reported to console
+
+2.8.2
+=====
+Jul 10, 2017
+- Update Gwen from v2.7.1 to v[2.7.2](https://github.com/gwen-interpreter/gwen/releases/tag/v2.7.2)
+  - Add syntax checking for DataTable tags
+  - Report error if Data Table tag is specified without StepDef tag
+  - Give steps that call other steps execution priority over all other steps or StepDefs that may have the same
+    structure to ensure that they are evaluated and not raised as conflicts that require renaming.
+  - All data table cell references must be include data record index unless in foreach step
+- Updated sample features to demonstrate and exercise data tables
+
+2.8.1
+=====
+Jul 8, 2017
+- Update Gwen from v2.7.0 to v[2.7.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.7.1)
+  - Renamed JS methods for consistency
+  - Changed dry run values for consistency
+- Update sample google search features
+- Title comparison fix - keep fetching title until comparison is satisfied or driver times out
+
+2.8.0
+=====
+Jul 7, 2017
+- Update Gwen from v2.6.1 to v[2.7.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.7.0)
+  - PR gwen-interpreter/gwen#32 - Add support for Gherkin data tables (horizontal, vertical, and matrix forms)
+  - Log the results of bound value lookups at debug level
+  - Refactor of code to support more seamless dry run
+- Introduce right click wherever click is supported
+  - I right click <element>
+  - I right click <element> of <context>
+- Allow click with modifier keys
+  - I <modifiers> click <element>
+  - I <modifiers> right click <element>
+- Allow sending any key combinations to <elements> (for simulating browser shortcuts)
+  - I send "<keys>" to <element>
+- Propagate underlying exception messages that may occur when looking up bindings so that the user can see them
+- Refactor to code to separate web and environment context concerns
+  - All web actions now happen in WebContext instead of WebEnvContext
+
+2.7.1
+=====
+Jun 27, 2017
+- Update Gwen from v2.6.0 to v[2.6.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.6.1)
+  - Correct id in example rows for scenario outlines in JSON reports
+  - Use StringEscapeUtils from Apache Commons to escape HTML, XML, and JSON in reports where necessary
+
+2.7.0
+=====
+Jun 25, 2017
+- Update Gwen from v2.5.0 to v[2.6.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.6.0)
+  - Add cucumber compliant JSON output reports
+    - json -f/--format option
+    - evaluated scenario outlines are expanded in the report (and not expanded if not evaluated)
+  - Expand evaluated scenario outlines in JUnit-XML reports (and do not expanded if not evaluated)
+  - Capture location of all gherkin nodes instead of just steps only
+  - Add support for binding closure functions to data scopes
+
+2.6.0
+=====
+Jun 9, 2017
+- And new DSL steps, see also [Gwen web DSL](http://htmlpreview.github.io/?https://github.com/gwen-interpreter/gwen-web/blob/master/docs/dsl/gwen-web-dsl.html)
+  - <attribute> should be absent
+  - <source> at json path|xpath "<path>" should be|contain|start with|end with|match regex "<expression"
+  - <source> at json path|xpath "<path>" should not be|contain|start with|end with|match regex "<expression"
+- Update Gwen from v2.4.1 to v[2.5.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.5.0)
+  - Make string interpolation work with multi-line strings (use DOTALL mode in regex matcher)
+  - Introduce Java Scripting API (JSR 223) to support JavaScript evaluation in non web engines
+  - Merge common steps into default engine support class so other engines can easily inherit them
+
+2.5.3
+=====
+Jun 1, 2017
+- Update Gwen from v2.4.0 to v[2.4.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.4.1)
+  - Make env REPL output more compact and readable
+  - Remove json-play dependency
+
+2.5.2
+=====
+May 30, 2017
+- Update Gwen from v2.3.1 to v[2.4.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.4.0)
+  - Enable cntl-d in REPL for exit (issue gwen-interpreter/gwen#31 raised by @asgillett)
+
+2.5.1
+=====
+May 20, 2017
+- Fix issue gwen-interpreter/gwen#30
+  - use web driver click instead of javascript click
+- Update Gwen from v2.3.0 to v[2.3.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.3.1)
+
+2.5.0
+=====
+Apr 23, 2017
+- Fixed issue #37 - When closing child window, Gwen can get confused about the parent window ID
+  - Solution was to move tracking state to env context where lifecycle (initialisation, resetting, etc..) is managed
+  - This ensures that all window tracking state is reset for each feature execution
+- Update selenium from version 3.3.1 to 3.4.0
+- Make at most two attempts to relocate stale elements
+
+2.4.0
+=====
+Apr 11, 2017
+- Add support for repeating a step for each element in a list of web elements
+  - <step> for each <element> located by id|name|tag name|css selector|xpath|class name|link text|partial link text|javascript "<expression>"
+  - <step> for each <element> located by id|name|tag name|css selector|xpath|class name|link text|partial link text|javascript "<expression>" in <container>
+  - <step> for each <element> in <elements>
+- Add examples and unit tests to exercise new capability of sourcing examples tables from CSV files in scenario outlines
+- Send click action to checkboxes if sending space has no effect
+- Support ticked|unticked and tick|untick in all checkbox DSL steps in addition to checked|unchecked and check|uncheck
+- Update Gwen from v2.2.1 to v[2.2.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.3.0)
+  - Add cache in feature scope for storing temporary objects (non string values)
+  - Add support for sourcing examples tables from CSV data files in scenario outlines
+  - Add settings for enabling or disabling auto meta and CSV data file discovery
+    - gwen.auto.discover.meta (true to enable auto meta discovery, false to disable, default is true for enabled)
+    - gwen.auto.discover.data.csv (true to enable auto CSV data discovery, false to disable, default is true for enabled)
+
+2.3.4
+=====
+Mar 31, 2017
+- Add dry run unit test for todoMVC examples
+- Convert null text retrieved from web pages to blank strings
+- Generate slideshows in reports only if screen shot capture has been enabled
+- Update Gwen from v2.2.0 to v[2.2.1](https://github.com/gwen-interpreter/gwen/releases/tag/v2.2.1)
+
+2.3.3
+=====
+Mar 29, 2017
+- When checking if an element is displayed or hidden, report no such element instead of unbound reference if the
+  element cannot be located.
+- move element state checking to Web env context class
+- dry run fix for steps accessing element text
+- Add todoMVC feature examples
+
+2.3.2
+=====
+Mar 23, 2017
+- Documented steps for working with the current URL and also included them in the DSL for tab completion
+
+2.3.1
+=====
+Mar 21, 2017
+- Fail with assertion error when a timeout is detected on compare step (instead of throwing timeout error)
+
+2.3.0
+=====
+Mar 12, 2017
+- Added support for scenario outlines (see PR gwen-interpreter/gwen#29)
+- Update Selenium from v3.0.1 to v3.3.1
+- Update Gwen from v2.1.0 to v[2.2.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.2.0)
+
+2.2.0
+=====
+Feb 23, 2017
+- Add DSLs for resizing currently active browser window (issue #36)
+  - I resize the window to width <w> and height <h>
+  - I <maximize|maximise> the window
+
+2.1.0
+=====
+Feb 10, 2017
+  - Added SQL support for binding attributes to fields in databases
+  - Introduced GWEN_CLASSPATH environment variable for adding external JARs to Gwen classpath
+  - new DSL: <attribute> <is|will be> defined by sql "<selectStmt>" in the <dbName> database
+  - Update Gwen from v2.0.0 to v[2.1.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.1.0)
+
+2.0.1
+=====
+Jan 27, 2017
+  - Fixed bug where regex, xpath, and json path bindings were not being resolved
+  
+2.0.0
+=====
+Jan 20, 2017
+- Update to Java 8 (Java 7 no longer supported)
+- Update from Scala 2.11.8 to 2.12.1
+- Update Selenium from v2.53.1 to v3.0.1
+- Update Gwen from v1.4.3 to v[2.0.0](https://github.com/gwen-interpreter/gwen/releases/tag/v2.0.0)
+  
 1.11.10
 =======
 Nov 25, 2016, 6:30 PM GMT+10 (AEDT)
